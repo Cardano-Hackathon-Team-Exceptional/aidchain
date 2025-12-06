@@ -1,6 +1,12 @@
 #!/bin/bash
 # File: deploy.sh
+<<<<<<< HEAD
 # Deploys Plutus smart contracts to Cardano testnet
+=======
+# Location: scripts/
+# Description: Deploys compiled Plutus smart contracts to Cardano testnet
+# Syncs with backend: Compiles contracts, generates validator addresses, submits deployment transaction
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 
 set -e
 
@@ -11,6 +17,7 @@ YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
+<<<<<<< HEAD
 pause_step() {
   echo -e "${BLUE}────────────────────────────────────────────${NC}"
   echo -e "${YELLOW}$1${NC}"
@@ -18,6 +25,8 @@ pause_step() {
   echo ""
 }
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Configuration
 NETWORK="preprod"
 TESTNET_MAGIC="1"
@@ -36,8 +45,11 @@ echo ""
 # Create necessary directories
 mkdir -p "$BUILD_DIR" "$KEYS_DIR"
 
+<<<<<<< HEAD
 pause_step "Initialisation complete. The deployment process will now validate the environment."
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Step 1: Validate environment
 echo -e "${YELLOW}[1/6] Validating environment...${NC}"
 if ! command -v cabal &> /dev/null; then
@@ -51,8 +63,11 @@ if ! command -v cardano-cli &> /dev/null; then
 fi
 echo -e "${GREEN}✓ Environment validated${NC}"
 
+<<<<<<< HEAD
 pause_step "Environment validation OK. Proceed to compilation."
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Step 2: Compile Plutus contracts
 echo -e "${YELLOW}[2/6] Compiling Plutus contracts...${NC}"
 cd "$CONTRACTS_DIR"
@@ -63,8 +78,11 @@ else
 fi
 cd "$WORK_DIR"
 
+<<<<<<< HEAD
 pause_step "Compilation complete. Validator extraction is next."
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Step 3: Extract and serialize validator scripts
 echo -e "${YELLOW}[3/6] Extracting validator scripts...${NC}"
 if [ ! -f "$BUILD_DIR/campaign-validator.plutus" ]; then
@@ -80,9 +98,13 @@ else
   echo -e "${GREEN}✓ Validator already available${NC}"
 fi
 
+<<<<<<< HEAD
 pause_step "Validators prepared. Next: script address calculation."
 
 # Step 4: Calculate addresses
+=======
+# Step 4: Calculate validator script address
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 echo -e "${YELLOW}[4/6] Calculating script addresses...${NC}"
 SCRIPT_ADDRESS=$(cardano-cli address build \
   --payment-script-file "$BUILD_DIR/campaign-validator.plutus" \
@@ -90,14 +112,21 @@ SCRIPT_ADDRESS=$(cardano-cli address build \
 
 echo -e "${GREEN}✓ Campaign Validator Address: $SCRIPT_ADDRESS${NC}"
 
+<<<<<<< HEAD
+=======
+# Extract NFT policy address
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 NFT_POLICY_ADDR=$(cardano-cli address build \
   --payment-script-file "$BUILD_DIR/nft-policy.plutus" \
   --testnet-magic "$TESTNET_MAGIC" 2>/dev/null || echo "addr_test_nft_placeholder")
 
 echo -e "${GREEN}✓ NFT Policy Address: $NFT_POLICY_ADDR${NC}"
 
+<<<<<<< HEAD
 pause_step "Addresses ready. Proceeding to wallet funding verification."
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Step 5: Check wallet funding
 echo -e "${YELLOW}[5/6] Verifying wallet funding...${NC}"
 if [ ! -f "$KEYS_DIR/admin-payment.addr" ]; then
@@ -119,8 +148,11 @@ else
   echo -e "${GREEN}✓ Wallet funded: $WALLET_BALANCE lovelace${NC}"
 fi
 
+<<<<<<< HEAD
 pause_step "Wallet check complete. Final step: manifest creation."
 
+=======
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 # Step 6: Create deployment manifest
 echo -e "${YELLOW}[6/6] Creating deployment manifest...${NC}"
 cat > "$CONFIG_FILE" <<EOF
@@ -152,18 +184,32 @@ echo -e "${GREEN}✓ Manifest created: $CONFIG_FILE${NC}"
 
 echo ""
 echo -e "${BLUE}╔════════════════════════════════════════════╗${NC}"
+<<<<<<< HEAD
 echo -e "${BLUE}║       Deployment Configuration Ready       ║${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════╝${NC}"
 echo ""
 
 pause_step "Deployment metadata generated successfully. You may now proceed with transaction submission."
 
+=======
+echo -e "${BLUE}║         Deployment Configuration Ready      ║${NC}"
+echo -e "${BLUE}╚════════════════════════════════════════════╝${NC}"
+echo ""
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
 echo -e "${YELLOW}Next Steps:${NC}"
 echo "1. Review deployment manifest:"
 echo "   cat $CONFIG_FILE"
 echo ""
+<<<<<<< HEAD
 echo "2. Submit transactions:"
 echo "   cardano-cli transaction submit --testnet-magic $TESTNET_MAGIC --tx-file <tx.signed>"
 echo ""
 echo "3. Query contract state:"
 echo "   cardano-cli query utxo --address $SCRIPT_ADDRESS --testnet-magic $TESTNET_MAGIC"
+=======
+echo "2. To submit transactions, use:"
+echo "   cardano-cli transaction submit --testnet-magic $TESTNET_MAGIC --tx-file <tx.signed>"
+echo ""
+echo "3. Query contract state:"
+echo "   cardano-cli query utxo --address $SCRIPT_ADDRESS --testnet-magic $TESTNET_MAGIC"
+>>>>>>> c7b249bdec2e744ded5a75199881325425c8cd00
