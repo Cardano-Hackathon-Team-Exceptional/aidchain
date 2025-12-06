@@ -4,7 +4,7 @@
 -- Manages dependencies, indexing, and build constraints for all packages
 
 packages:
-  contracts/
+  
 
 tests: True
 test-show-details: direct
@@ -43,4 +43,5 @@ constraints:
 allow-newer: plutus-ledger-api:base
 
 -- Flags
+
 flags: +dev
