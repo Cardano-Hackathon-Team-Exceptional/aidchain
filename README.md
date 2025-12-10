@@ -202,3 +202,5 @@ MIT Licence
 Developed for the Cardano Hackathon.
 
 ```
+By Maruh Akporowho
+```
