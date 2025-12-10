@@ -1,8 +1,3 @@
-Below is a cleanly structured, standards-compliant README layout. It uses **pure Markdown suitable for GitHub**, with proper headings, spacing, code blocks, and visual clarity—no emojis, no raw text artefacts.
-
----
-
-```markdown
 # AidChain
 
 A decentralised platform that brings transparency, traceability, and integrity to humanitarian aid distribution using the Cardano blockchain.
@@ -72,8 +67,8 @@ The frontend can operate against a local backend API or run in mock mode for off
 
 AidChain follows a three-layer architecture:
 
-```
 
+```bash
 ┌──────────────────────────────────────────────────────────┐
 │                        Frontend                           │
 │ React + Tailwind | Wallet API | ChainService abstraction  │
@@ -206,9 +201,4 @@ This exercises the lifecycle: create → donate → submit proof → verify → 
 MIT Licence
 Developed for the Cardano Hackathon.
 
-```
-
----
-
-If you’d like, I can also generate a **badge section**, **project timeline**, or **MVP checklist** to further enhance the README’s structure.
 ```
